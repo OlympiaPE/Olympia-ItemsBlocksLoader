@@ -2,9 +2,9 @@
 
 namespace Olympia\items\armors\orichalque;
 
-use Olympia\Kitmap\items\armors\BaseArmor;
+use Olympia\items\armors\BaseArmor;
+use Olympia\Loader;
 use customiesdevs\customies\item\CreativeInventoryInfo;
-use Olympia\Kitmap\managers\Managers;
 use pocketmine\inventory\ArmorInventory;
 use pocketmine\item\ArmorTypeInfo;
 use pocketmine\item\ItemIdentifier;
@@ -24,11 +24,11 @@ class OrichalqueBoots extends BaseArmor
 
     public function getMaxDurability(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.orichalque_boots.durability");
+        return Loader::getInstance()->getConfigManager()->getNested("orichalque_boots.durability");
     }
 
     public function getDefensePoints(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.orichalque_boots.defense");
+        return Loader::getInstance()->getConfigManager()->getNested("orichalque_boots.defense");
     }
 }

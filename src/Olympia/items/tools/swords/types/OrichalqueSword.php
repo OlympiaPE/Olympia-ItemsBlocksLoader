@@ -4,8 +4,8 @@ namespace Olympia\items\tools\swords\types;
 
 use customiesdevs\customies\item\component\IconComponent;
 use customiesdevs\customies\item\CreativeInventoryInfo;
-use Olympia\Kitmap\items\tools\swords\DashSword;
-use Olympia\Kitmap\managers\Managers;
+use Olympia\items\tools\swords\DashSword;
+use Olympia\Loader;
 use pocketmine\item\ItemIdentifier;
 use pocketmine\item\ToolTier;
 
@@ -28,11 +28,11 @@ final class OrichalqueSword extends DashSword
 
     public function getMaxDurability(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.orichalque_sword.durability");
+        return Loader::getInstance()->getConfigManager()->getNested("orichalque_sword.durability");
     }
 
     public function getAttackPoints(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.orichalque_sword.damage");
+        return Loader::getInstance()->getConfigManager()->getNested("orichalque_sword.damage");
     }
 }

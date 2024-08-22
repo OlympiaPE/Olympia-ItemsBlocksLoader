@@ -2,9 +2,9 @@
 
 namespace Olympia\items\armors\orichalque;
 
-use Olympia\Kitmap\items\armors\BaseArmor;
+use Olympia\items\armors\BaseArmor;
+use Olympia\Loader;
 use customiesdevs\customies\item\CreativeInventoryInfo;
-use Olympia\Kitmap\managers\Managers;
 use pocketmine\inventory\ArmorInventory;
 use pocketmine\item\ArmorTypeInfo;
 use pocketmine\item\ItemIdentifier;
@@ -24,11 +24,11 @@ class OrichalqueHelmet extends BaseArmor
 
     public function getMaxDurability(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.orichalque_helmet.durability");
+        return Loader::getInstance()->getConfigManager()->getNested("orichalque_helmet.durability");
     }
 
     public function getDefensePoints(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.orichalque_helmet.defense");
+        return Loader::getInstance()->getConfigManager()->getNested("orichalque_helmet.defense");
     }
 }

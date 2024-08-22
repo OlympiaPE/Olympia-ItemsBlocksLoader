@@ -5,7 +5,7 @@ namespace Olympia\items\armors\orichalque;
 use customiesdevs\customies\item\CreativeInventoryInfo;
 use customiesdevs\customies\item\ItemComponents;
 use customiesdevs\customies\item\ItemComponentsTrait;
-use Olympia\Kitmap\managers\Managers;
+use Olympia\Loader;
 use pocketmine\inventory\ArmorInventory;
 use pocketmine\item\Armor;
 use pocketmine\item\ArmorTypeInfo;
@@ -28,11 +28,11 @@ class OrichalqueLeggings extends Armor implements ItemComponents
 
     public function getMaxDurability(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.orichalque_leggings.durability");
+        return Loader::getInstance()->getConfigManager()->getNested("orichalque_leggings.durability");
     }
 
     public function getDefensePoints(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.orichalque_leggings.defense");
+        return Loader::getInstance()->getConfigManager()->getNested("orichalque_leggings.defense");
     }
 }

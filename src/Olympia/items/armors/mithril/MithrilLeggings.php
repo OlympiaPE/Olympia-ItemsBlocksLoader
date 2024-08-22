@@ -2,9 +2,9 @@
 
 namespace Olympia\items\armors\mithril;
 
-use Olympia\Kitmap\items\armors\BaseArmor;
+use Olympia\items\armors\BaseArmor;
+use Olympia\Loader;
 use customiesdevs\customies\item\CreativeInventoryInfo;
-use Olympia\Kitmap\managers\Managers;
 use pocketmine\inventory\ArmorInventory;
 use pocketmine\item\ArmorTypeInfo;
 use pocketmine\item\ItemIdentifier;
@@ -24,11 +24,11 @@ class MithrilLeggings extends BaseArmor
 
     public function getMaxDurability(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.mithril_leggings.durability");
+        return Loader::getInstance()->getConfigManager()->getNested("mithril_leggings.durability");
     }
 
     public function getDefensePoints(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.mithril_leggings.defense");
+        return Loader::getInstance()->getConfigManager()->getNested("mithril_leggings.defense");
     }
 }

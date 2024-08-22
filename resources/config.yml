@@ -1,0 +1,67 @@
+# ALSO MODIFY THE VALUES ON THE CORRESPONDING SERVER
+mithril_sword:
+  damage: 10
+  durability: 1600
+mithril_sickle:
+  damage: 5
+  durability: 1216
+orichalque_sword:
+  damage: 12
+  durability: 1800
+orichalque_sickle:
+  damage: 6
+  durability: 1562
+mithril_helmet:
+  defense: 4
+  durability: 1156
+mithril_chestplate:
+  defense: 6
+  durability: 1527
+mithril_leggings:
+  defense: 5
+  durability: 1453
+mithril_boots:
+  defense: 3
+  durability: 1305
+orichalque_helmet:
+  defense: 5
+  durability: 2313
+orichalque_chestplate:
+  defense: 7
+  durability: 2847
+orichalque_leggings:
+  defense: 6
+  durability: 2739
+orichalque_boots:
+  defense: 4
+  durability: 2527
+theia_helmet:
+  defense: 5
+  durability: 2313
+theia_chestplate:
+  defense: 7
+  durability: 2847
+theia_leggings:
+  defense: 6
+  durability: 2739
+theia_boots:
+  defense: 4
+  durability: 2527
+cronos_helmet:
+  defense: 5
+  durability: 2313
+cronos_chestplate:
+  defense: 7
+  durability: 2847
+cronos_leggings:
+  defense: 6
+  durability: 2739
+cronos_boots:
+  defense: 4
+  durability: 2527
+farm_leggings:
+  defense: 5
+  durability: 2229
+farm_boots:
+  defense: 3
+  durability: 2007

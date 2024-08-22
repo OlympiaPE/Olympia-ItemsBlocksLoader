@@ -4,8 +4,8 @@ namespace Olympia\items\tools\sickles\types;
 
 use customiesdevs\customies\item\component\IconComponent;
 use customiesdevs\customies\item\CreativeInventoryInfo;
-use Olympia\Kitmap\items\tools\sickles\BaseSickle;
-use Olympia\Kitmap\managers\Managers;
+use Olympia\items\tools\sickles\BaseSickle;
+use Olympia\Loader;
 use pocketmine\item\ItemIdentifier;
 
 final class OrichalqueSickle extends BaseSickle
@@ -43,11 +43,11 @@ final class OrichalqueSickle extends BaseSickle
      */
     public function getMaxDurability(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.orichalque_sickle.durability");
+        return Loader::getInstance()->getConfigManager()->getNested("orichalque_sickle.durability");
     }
 
     public function getAttackPoints(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.orichalque_sickle.damage");
+        return Loader::getInstance()->getConfigManager()->getNested("orichalque_sickle.damage");
     }
 }

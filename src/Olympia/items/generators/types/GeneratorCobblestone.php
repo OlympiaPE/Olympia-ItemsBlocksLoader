@@ -4,11 +4,8 @@ namespace Olympia\items\generators\types;
 
 use customiesdevs\customies\item\component\IconComponent;
 use customiesdevs\customies\item\CreativeInventoryInfo;
-use Olympia\Kitmap\items\generators\BaseGenerator;
-use pocketmine\block\Block;
-use pocketmine\block\VanillaBlocks;
+use Olympia\items\generators\BaseGenerator;
 use pocketmine\item\ItemIdentifier;
-use pocketmine\player\Player;
 
 final class GeneratorCobblestone extends BaseGenerator
 {
@@ -25,10 +22,5 @@ final class GeneratorCobblestone extends BaseGenerator
 
         $this->setCustomName("§r§fGénérateur de pierres");
         $this->addComponent(new IconComponent("generator_cobblestone"));
-    }
-
-    public function getBlockGenerated(Player $player): Block
-    {
-        return VanillaBlocks::COBBLESTONE();
     }
 }

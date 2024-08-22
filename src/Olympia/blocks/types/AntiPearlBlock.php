@@ -1,6 +1,6 @@
 <?php
 
-namespace Olympia\Kitmap\blocks\types;
+namespace Olympia\blocks\types;
 
 use pocketmine\block\Block;
 use pocketmine\block\BlockBreakInfo;

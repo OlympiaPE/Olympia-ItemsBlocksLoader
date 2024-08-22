@@ -2,9 +2,9 @@
 
 namespace Olympia\items\armors\orichalque;
 
-use Olympia\Kitmap\items\armors\BaseArmor;
+use Olympia\items\armors\BaseArmor;
+use Olympia\Loader;
 use customiesdevs\customies\item\CreativeInventoryInfo;
-use Olympia\Kitmap\managers\Managers;
 use pocketmine\inventory\ArmorInventory;
 use pocketmine\item\ArmorTypeInfo;
 use pocketmine\item\ItemIdentifier;
@@ -24,11 +24,11 @@ class OrichalqueChestplate extends BaseArmor
 
     public function getMaxDurability(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.orichalque_chestplate.durability");
+        return Loader::getInstance()->getConfigManager()->getNested("orichalque_chestplate.durability");
     }
 
     public function getDefensePoints(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.orichalque_chestplate.defense");
+        return Loader::getInstance()->getConfigManager()->getNested("orichalque_chestplate.defense");
     }
 }

@@ -4,11 +4,9 @@ namespace Olympia\items\armors;
 
 use customiesdevs\customies\item\component\ArmorComponent;
 use customiesdevs\customies\item\component\CanDestroyInCreativeComponent;
-use customiesdevs\customies\item\component\DisplayNameComponent;
 use customiesdevs\customies\item\component\DurabilityComponent;
 use customiesdevs\customies\item\component\MaxStackSizeComponent;
 use customiesdevs\customies\item\component\UseAnimationComponent;
-use customiesdevs\customies\item\component\WearableComponent;
 use customiesdevs\customies\item\ItemComponents;
 use customiesdevs\customies\item\ItemComponentsTrait;
 use pocketmine\item\Armor;
@@ -34,7 +32,6 @@ abstract class BaseArmor extends Armor implements ItemComponents
         $this->addComponent(new MaxStackSizeComponent(1));
         $this->addComponent(new DurabilityComponent($this->getMaxDurability()));
         $this->addComponent(new ArmorComponent($this->getDefensePoints(), "diamond"));
-        $this->addComponent(new WearableComponent(self::ARMOR_WEARABLE[$this->getArmorSlot()]));
         $this->addComponent(new CanDestroyInCreativeComponent(true));
         $this->addComponent(new UseAnimationComponent(0));
     }

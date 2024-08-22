@@ -3,8 +3,8 @@
 namespace Olympia\items\armors\cronos;
 
 use customiesdevs\customies\item\CreativeInventoryInfo;
-use Olympia\Kitmap\items\armors\BaseArmor;
-use Olympia\Kitmap\managers\Managers;
+use Olympia\items\armors\BaseArmor;
+use Olympia\Loader;
 use pocketmine\inventory\ArmorInventory;
 use pocketmine\item\ArmorTypeInfo;
 use pocketmine\item\ItemIdentifier;
@@ -24,11 +24,11 @@ class CronosLeggings extends BaseArmor
 
     public function getMaxDurability(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.cronos_leggings.durability");
+        return Loader::getInstance()->getConfigManager()->getNested("cronos_leggings.durability");
     }
 
     public function getDefensePoints(): int
     {
-        return Managers::CONFIG()->getNested("items-stats.cronos_leggings.defense");
+        return Loader::getInstance()->getConfigManager()->getNested("cronos_leggings.defense");
     }
 }

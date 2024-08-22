@@ -1,18 +1,56 @@
 <?php
 
-namespace Olympia;
+namespace Olympia\loaders;
 
 use customiesdevs\customies\item\CustomiesItemFactory;
-use pocketmine\plugin\PluginBase;
+use Olympia\items\armors\cronos\CronosBoots;
+use Olympia\items\armors\cronos\CronosChestplate;
+use Olympia\items\armors\cronos\CronosHelmet;
+use Olympia\items\armors\cronos\CronosLeggings;
+use Olympia\items\armors\farm\FarmBoots;
+use Olympia\items\armors\farm\FarmLeggings;
+use Olympia\items\armors\mithril\MithrilBoots;
+use Olympia\items\armors\mithril\MithrilChestplate;
+use Olympia\items\armors\mithril\MithrilHelmet;
+use Olympia\items\armors\mithril\MithrilLeggings;
+use Olympia\items\armors\orichalque\OrichalqueBoots;
+use Olympia\items\armors\orichalque\OrichalqueChestplate;
+use Olympia\items\armors\orichalque\OrichalqueHelmet;
+use Olympia\items\armors\orichalque\OrichalqueLeggings;
+use Olympia\items\armors\theia\TheiaBoots;
+use Olympia\items\armors\theia\TheiaChestplate;
+use Olympia\items\armors\theia\TheiaHelmet;
+use Olympia\items\armors\theia\TheiaLeggings;
+use Olympia\items\generators\types\GeneratorCobblestone;
+use Olympia\items\generators\types\GeneratorCraftingTable;
+use Olympia\items\generators\types\GeneratorFenceGate;
+use Olympia\items\minerals\MithrilIngot;
+use Olympia\items\minerals\OrichalqueIngot;
+use Olympia\items\minerals\OrichalqueNugget;
+use Olympia\items\partners\AntiBuildStick;
+use Olympia\items\partners\AntiPearlStick;
+use Olympia\items\partners\EggTrap;
+use Olympia\items\partners\FlyingSoup;
+use Olympia\items\partners\Force;
+use Olympia\items\partners\InfernalStick;
+use Olympia\items\partners\InstantTp;
+use Olympia\items\partners\Levitation;
+use Olympia\items\partners\Nemo;
+use Olympia\items\partners\PortalTp;
+use Olympia\items\partners\Resistance;
+use Olympia\items\partners\Rocket;
+use Olympia\items\partners\Switchball;
+use Olympia\items\projectiles\EnderPearl;
+use Olympia\items\tools\pickaxes\types\VulcainPickaxe;
+use Olympia\items\tools\sickles\types\MithrilSickle;
+use Olympia\items\tools\sickles\types\OrichalqueSickle;
+use Olympia\items\tools\swords\types\InfinitySword;
+use Olympia\items\tools\swords\types\MithrilSword;
+use Olympia\items\tools\swords\types\OrichalqueSword;
 
-class ItemsBlocksLoader extends PluginBase
+final class ItemsLoader
 {
-    protected function onEnable(): void
-    {
-
-    }
-
-    private function registerAllItems(): void
+    public static function loadAllItems(): void
     {
         $factory = CustomiesItemFactory::getInstance();
 

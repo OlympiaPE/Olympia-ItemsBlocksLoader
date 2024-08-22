@@ -7,8 +7,6 @@ use customiesdevs\customies\item\component\IconComponent;
 use customiesdevs\customies\item\CreativeInventoryInfo;
 use customiesdevs\customies\item\ItemComponents;
 use customiesdevs\customies\item\ItemComponentsTrait;
-use Olympia\Kitmap\session\Session;
-use pocketmine\entity\Entity;
 use pocketmine\item\Durable;
 use pocketmine\item\enchantment\EnchantmentInstance;
 use pocketmine\item\enchantment\VanillaEnchantments;
@@ -43,12 +41,5 @@ class Nemo extends Durable implements ItemComponents
     public function getMaxDurability(): int
     {
         return 3;
-    }
-    public function onAttackEntity(Entity $victim, array &$returnedItems): bool
-    {
-        if ($victim instanceof Session) {
-            $this->applyDamage(1);
-        }
-        return false;
     }
 }
