@@ -1,0 +1,7 @@
+name: Olympia-ItemsBlocksLoader
+version: 1.0.0
+api: 5.0.0
+main: Olympia\ItemsBlocksLoader
+author: RemBog
+depend:
+  - Olympia-Customies
