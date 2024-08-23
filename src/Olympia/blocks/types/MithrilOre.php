@@ -7,7 +7,6 @@ use pocketmine\block\Block;
 use Olympia\items\OlympiaItems;
 use pocketmine\block\BlockBreakInfo;
 use pocketmine\block\BlockIdentifier;
-use pocketmine\block\BlockTypeIds;
 use pocketmine\block\BlockTypeInfo;
 use pocketmine\block\utils\FortuneDropHelper;
 use pocketmine\item\Item;
