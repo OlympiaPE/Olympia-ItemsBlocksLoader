@@ -2,6 +2,7 @@
 
 namespace Olympia\blocks\types;
 
+use Olympia\blocks\OlympiaBlockTypeIds;
 use pocketmine\block\Block;
 use Olympia\items\OlympiaItems;
 use pocketmine\block\BlockBreakInfo;
@@ -17,7 +18,7 @@ final class MithrilOre extends Block
     public function __construct()
     {
         $info = new BlockTypeInfo(BlockBreakInfo::pickaxe(3.8, ToolTier::IRON));
-        parent::__construct(new BlockIdentifier(BlockTypeIds::newId()), "Mithril Ore", $info);
+        parent::__construct(new BlockIdentifier(OlympiaBlockTypeIds::MITHRIL_ORE), "Mithril Ore", $info);
     }
 
     public function getDropsForCompatibleTool(Item $item): array

@@ -2,6 +2,7 @@
 
 namespace Olympia\blocks\types;
 
+use Olympia\blocks\OlympiaBlockTypeIds;
 use pocketmine\block\Block;
 use pocketmine\block\BlockBreakInfo;
 use pocketmine\block\BlockIdentifier;
@@ -14,6 +15,6 @@ final class OrichalqueBlock extends Block
     public function __construct()
     {
         $info = new BlockTypeInfo(BlockBreakInfo::pickaxe(6.0, ToolTier::STONE, 30.0));
-        parent::__construct(new BlockIdentifier(BlockTypeIds::newId()), "Orichalque Block", $info);
+        parent::__construct(new BlockIdentifier(OlympiaBlockTypeIds::ORICHALQUE_BLOCK), "Orichalque Block", $info);
     }
 }
