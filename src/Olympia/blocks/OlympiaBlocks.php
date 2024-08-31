@@ -8,7 +8,11 @@ use Olympia\blocks\types\ChunkBuster;
 use Olympia\blocks\types\MithrilOre;
 use Olympia\blocks\types\OrichalqueBlock;
 use Olympia\blocks\types\OrichalqueOre;
+use Olympia\blocks\types\fencegate\FenceGateClose;
+use Olympia\blocks\types\fencegate\FenceGateOpen;
+use Olympia\Loader;
 use pocketmine\block\Block;
+use pocketmine\block\VanillaBlocks;
 use pocketmine\utils\CloningRegistryTrait;
 
 /**
@@ -22,6 +26,10 @@ use pocketmine\utils\CloningRegistryTrait;
  * Special :
  * @method static AntiPearlBlock ANTIPEARL_BLOCK()
  * @method static ChunkBuster CHUNK_BUSTER()
+ *
+ * Fence Gate :
+ * @method static FenceGateClose FENCE_GATE_CLOSE()
+ * @method static FenceGateOpen FENCE_GATE_OPEN()
  */
 
 final class OlympiaBlocks
@@ -35,7 +43,7 @@ final class OlympiaBlocks
 
     /**
      * @return Block[]
-     * @phpstan-return array<string, Item>
+     * @phpstan-return array<string, Block>
      */
     public static function getAll(): array
     {
@@ -46,12 +54,24 @@ final class OlympiaBlocks
 
     protected static function setup(): void
     {
-        self::register("mithril_ore", CustomiesBlockFactory::getInstance()->get("minecraft:mithril_ore"));
+        $factory = CustomiesBlockFactory::getInstance();
+        $configManager = Loader::getInstance()->getConfigManager();
 
-        self::register("orichalque_ore", CustomiesBlockFactory::getInstance()->get("minecraft:orichalque_ore"));
-        self::register("orichalque_block", CustomiesBlockFactory::getInstance()->get("minecraft:orichalque_block"));
+        $blocks = [
+            "mithril_ore",
+            "orichalque_ore",
+            "orichalque_block",
+            "antipearl_block",
+            "chunk_buster",
+            "fence_gate_close",
+            "fence_gate_open",
+        ];
 
-        self::register("antipearl_block", CustomiesBlockFactory::getInstance()->get("minecraft:antipearl_block"));
-        self::register("chunk_buster", CustomiesBlockFactory::getInstance()->get("minecraft:chunk_buster"));
+        foreach ($blocks as $block) {
+            self::register($block, $configManager->getNested("items.$block")
+                ? $factory->get("minecraft:$block")
+                : VanillaBlocks::DIRT()
+            );
+        }
     }
 }

@@ -40,13 +40,16 @@ use Olympia\items\partners\PortalTp;
 use Olympia\items\partners\Resistance;
 use Olympia\items\partners\Rocket;
 use Olympia\items\partners\Switchball;
-use Olympia\items\projectiles\EnderPearl;
+use Olympia\items\projectiles\EnderPearlFFA;
+use Olympia\items\projectiles\EnderPearlKitMap;
 use Olympia\items\tools\pickaxes\types\VulcainPickaxe;
 use Olympia\items\tools\sickles\types\MithrilSickle;
 use Olympia\items\tools\sickles\types\OrichalqueSickle;
 use Olympia\items\tools\swords\types\InfinitySword;
 use Olympia\items\tools\swords\types\MithrilSword;
 use Olympia\items\tools\swords\types\OrichalqueSword;
+use Olympia\Loader;
+use pocketmine\block\VanillaBlocks;
 use pocketmine\item\Item;
 use pocketmine\utils\CloningRegistryTrait;
 
@@ -96,7 +99,7 @@ use pocketmine\utils\CloningRegistryTrait;
  * @method static GeneratorFenceGate GENERATOR_FENCEGATE()
  *
  * Special items :
- * @method static EnderPearl ENDER_PEARL()
+ * @method static EnderPearlKitMap ENDER_PEARL_KITMAP()
  * @method static EggTrap EGGTRAP()
  * @method static Switchball SWITCHBALL()
  * @method static Force FORCE()
@@ -110,6 +113,9 @@ use pocketmine\utils\CloningRegistryTrait;
  * @method static Nemo NEMO()
  * @method static InstantTp INSTANT_TP()
  * @method static FlyingSoup FLYING_SOUP()
+ *
+ * KitFFA :
+ * @method static EnderPearlFFA ENDER_PEARL_FFA()
  */
 
 final class OlympiaItems
@@ -135,57 +141,69 @@ final class OlympiaItems
     protected static function setup(): void
     {
         $factory = CustomiesItemFactory::getInstance();
+        $configManager = Loader::getInstance()->getConfigManager();
 
-        self::register("farm_leggings", $factory->get("minecraft:farm_leggings"));
-        self::register("farm_boots", $factory->get("minecraft:farm_boots"));
+        $items = [
+            "farm_leggings",
+            "farm_boots",
 
-        self::register("mithril_helmet", $factory->get("minecraft:mithril_helmet"));
-        self::register("mithril_chestplate", $factory->get("minecraft:mithril_chestplate"));
-        self::register("mithril_leggings", $factory->get("minecraft:mithril_leggings"));
-        self::register("mithril_boots", $factory->get("minecraft:mithril_boots"));
-        self::register("mithril_sword", $factory->get("minecraft:mithril_sword"));
-        self::register("mithril_sickle", $factory->get("minecraft:mithril_sickle"));
-        self::register("mithril_ingot", $factory->get("minecraft:mithril_ingot"));
+            "mithril_helmet",
+            "mithril_chestplate",
+            "mithril_leggings",
+            "mithril_boots",
+            "mithril_sword",
+            "mithril_sickle",
+            "mithril_ingot",
 
-        self::register("orichalque_helmet", $factory->get("minecraft:orichalque_helmet"));
-        self::register("orichalque_chestplate", $factory->get("minecraft:orichalque_chestplate"));
-        self::register("orichalque_leggings", $factory->get("minecraft:orichalque_leggings"));
-        self::register("orichalque_boots", $factory->get("minecraft:orichalque_boots"));
-        self::register("orichalque_sword", $factory->get("minecraft:orichalque_sword"));
-        self::register("orichalque_sickle", $factory->get("minecraft:orichalque_sickle"));
-        self::register("orichalque_ingot", $factory->get("minecraft:orichalque_ingot"));
-        self::register("orichalque_nugget", $factory->get("minecraft:orichalque_nugget"));
+            "orichalque_helmet",
+            "orichalque_chestplate",
+            "orichalque_leggings",
+            "orichalque_boots",
+            "orichalque_sword",
+            "orichalque_sickle",
+            "orichalque_ingot",
+            "orichalque_nugget",
 
-        self::register("cronos_helmet", $factory->get("minecraft:cronos_helmet"));
-        self::register("cronos_chestplate", $factory->get("minecraft:cronos_chestplate"));
-        self::register("cronos_leggings", $factory->get("minecraft:cronos_leggings"));
-        self::register("cronos_boots", $factory->get("minecraft:cronos_boots"));
+            "cronos_helmet",
+            "cronos_chestplate",
+            "cronos_leggings",
+            "cronos_boots",
 
-        self::register("theia_helmet", $factory->get("minecraft:theia_helmet"));
-        self::register("theia_chestplate", $factory->get("minecraft:theia_chestplate"));
-        self::register("theia_leggings", $factory->get("minecraft:theia_leggings"));
-        self::register("theia_boots", $factory->get("minecraft:theia_boots"));
+            "theia_helmet",
+            "theia_chestplate",
+            "theia_leggings",
+            "theia_boots",
 
-        self::register("vulcain_pickaxe", $factory->get("minecraft:vulcain_pickaxe"));
-        self::register("infinity_sword", $factory->get("minecraft:infinity_sword"));
+            "vulcain_pickaxe",
+            "infinity_sword",
 
-        self::register("generator_cobblestone", $factory->get("minecraft:generator_cobblestone"));
-        self::register("generator_craftingtable", $factory->get("minecraft:generator_craftingtable"));
-        self::register("generator_fencegate", $factory->get("minecraft:generator_fencegate"));
+            "generator_cobblestone",
+            "generator_craftingtable",
+            "generator_fencegate",
 
-        self::register("ender_pearl", $factory->get("minecraft:olympia_ender_pearl"));
-        self::register("eggtrap", $factory->get("minecraft:eggtrap"));
-        self::register("switchball", $factory->get("minecraft:switchball"));
-        self::register("force", $factory->get("minecraft:force"));
-        self::register("resistance", $factory->get("minecraft:resistance"));
-        self::register("levitation", $factory->get("minecraft:levitation"));
-        self::register("portal_tp", $factory->get("minecraft:portal_tp"));
-        self::register("rocket", $factory->get("minecraft:rocket"));
-        self::register("infernal_stick", $factory->get("minecraft:infernal_stick"));
-        self::register("anti_pearl_stick", $factory->get("minecraft:anti_pearl_stick"));
-        self::register("anti_build_stick", $factory->get("minecraft:anti_build_stick"));
-        self::register("nemo", $factory->get("minecraft:nemo"));
-        self::register("instant_tp", $factory->get("minecraft:instant_tp"));
-        self::register("flying_soup", $factory->get("minecraft:flying_soup"));
+            "ender_pearl_kitmap",
+            "eggtrap",
+            "switchball",
+            "force",
+            "resistance",
+            "levitation",
+            "portal_tp",
+            "rocket",
+            "infernal_stick",
+            "anti_pearl_stick",
+            "anti_build_stick",
+            "nemo",
+            "instant_tp",
+            "flying_soup",
+
+            "ender_pearl_ffa",
+        ];
+
+        foreach ($items as $item) {
+            self::register($item, $configManager->getNested("items.$item")
+                ? $factory->get("minecraft:$item")
+                : VanillaBlocks::BEDROCK()->asItem()
+            );
+        }
     }
 }

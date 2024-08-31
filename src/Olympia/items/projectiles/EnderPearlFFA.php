@@ -16,7 +16,7 @@ use pocketmine\item\ProjectileItem;
 use pocketmine\player\Player;
 use pocketmine\entity\projectile\EnderPearl as EnderPearlEntity;
 
-class EnderPearl extends ProjectileItem implements ItemComponents
+class EnderPearlFFA extends ProjectileItem implements ItemComponents
 {
     use ItemComponentsTrait;
 
