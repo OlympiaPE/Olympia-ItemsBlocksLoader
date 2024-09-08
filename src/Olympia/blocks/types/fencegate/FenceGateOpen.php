@@ -27,4 +27,9 @@ class FenceGateOpen extends FenceGate
     {
         return [];
     }
+
+    public function getDrops(Item $item): array
+    {
+        return [OlympiaBlocks::FENCE_GATE_CLOSE()->asItem()];
+    }
 }

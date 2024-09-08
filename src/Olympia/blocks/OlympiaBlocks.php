@@ -10,9 +10,7 @@ use Olympia\blocks\types\OrichalqueBlock;
 use Olympia\blocks\types\OrichalqueOre;
 use Olympia\blocks\types\fencegate\FenceGateClose;
 use Olympia\blocks\types\fencegate\FenceGateOpen;
-use Olympia\Loader;
 use pocketmine\block\Block;
-use pocketmine\block\VanillaBlocks;
 use pocketmine\utils\CloningRegistryTrait;
 
 /**
@@ -55,7 +53,6 @@ final class OlympiaBlocks
     protected static function setup(): void
     {
         $factory = CustomiesBlockFactory::getInstance();
-        $configManager = Loader::getInstance()->getConfigManager();
 
         $blocks = [
             "mithril_ore",
@@ -68,10 +65,7 @@ final class OlympiaBlocks
         ];
 
         foreach ($blocks as $block) {
-            self::register($block, $configManager->getNested("items.$block")
-                ? $factory->get("minecraft:$block")
-                : VanillaBlocks::DIRT()
-            );
+            self::register($block, $factory->get("minecraft:$block"));
         }
     }
 }

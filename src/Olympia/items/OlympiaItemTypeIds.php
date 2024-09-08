@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpUnused */
+
 namespace Olympia\items;
 
 final class OlympiaItemTypeIds
@@ -41,7 +43,7 @@ final class OlympiaItemTypeIds
     public const GENERATOR_CRAFTINGTABLE = 30028;
     public const GENERATOR_FENCEGATE = 30029;
 
-    public const ENDER_PEARL_KITMAP = 30030;
+    public const OLYMPIA_ENDER_PEARL = 30030;
     public const EGGTRAP = 30031;
     public const SWITCHBALL = 30032;
     public const FORCE = 30033;
@@ -55,6 +57,16 @@ final class OlympiaItemTypeIds
     public const NEMO = 30041;
     public const INSTANT_TP = 30042;
     public const FLYING_SOUP = 30043;
+    public const FACTION_TOWER = 30044;
 
-    public const ENDER_PEARL_FFA = 30044;
+    public const ENDER_PEARL_FFA = 30045;
+
+    public const ENDER_BUTT_ITEM = 30046;
+    public const GAME_ITEM = 30047;
+    public const JUMP_ITEM = 30048;
+    public const NAVIGATION_ITEM = 30049;
+    public const LAST_CHECKPOINT = 30050;
+    public const STOP_JUMP = 30051;
+
+    public const SWORD_AND_BLOCK = 30052;
 }

@@ -24,12 +24,20 @@ use Olympia\items\armors\theia\TheiaLeggings;
 use Olympia\items\generators\types\GeneratorCobblestone;
 use Olympia\items\generators\types\GeneratorCraftingTable;
 use Olympia\items\generators\types\GeneratorFenceGate;
+use Olympia\items\hikabrain\SwordAndBlock;
+use Olympia\items\lobby\EnderButtItem;
+use Olympia\items\lobby\GameItem;
+use Olympia\items\lobby\JumpItem;
+use Olympia\items\lobby\LastCheckPoint;
+use Olympia\items\lobby\NavigationItem;
+use Olympia\items\lobby\StopJump;
 use Olympia\items\minerals\MithrilIngot;
 use Olympia\items\minerals\OrichalqueIngot;
 use Olympia\items\minerals\OrichalqueNugget;
 use Olympia\items\partners\AntiBuildStick;
 use Olympia\items\partners\AntiPearlStick;
 use Olympia\items\partners\EggTrap;
+use Olympia\items\partners\FactionTower;
 use Olympia\items\partners\FlyingSoup;
 use Olympia\items\partners\Force;
 use Olympia\items\partners\InfernalStick;
@@ -48,8 +56,6 @@ use Olympia\items\tools\sickles\types\OrichalqueSickle;
 use Olympia\items\tools\swords\types\InfinitySword;
 use Olympia\items\tools\swords\types\MithrilSword;
 use Olympia\items\tools\swords\types\OrichalqueSword;
-use Olympia\Loader;
-use pocketmine\block\VanillaBlocks;
 use pocketmine\item\Item;
 use pocketmine\utils\CloningRegistryTrait;
 
@@ -113,9 +119,21 @@ use pocketmine\utils\CloningRegistryTrait;
  * @method static Nemo NEMO()
  * @method static InstantTp INSTANT_TP()
  * @method static FlyingSoup FLYING_SOUP()
+ * @method static FactionTower FACTION_TOWER()
  *
  * KitFFA :
  * @method static EnderPearlFFA ENDER_PEARL_FFA()
+ *
+ * Lobby :
+ * @method static EnderButtItem ENDER_BUTT_ITEM()
+ * @method static GameItem GAME_ITEM()
+ * @method static JumpItem JUMP_ITEM()
+ * @method static NavigationItem NAVIGATION_ITEM()
+ * @method static LastCheckPoint LAST_CHECKPOINT()
+ * @method static StopJump STOP_JUMP()
+ *
+ * Hikabrain :
+ * @method static SwordAndBlock SWORD_AND_BLOCK()
  */
 
 final class OlympiaItems
@@ -141,7 +159,6 @@ final class OlympiaItems
     protected static function setup(): void
     {
         $factory = CustomiesItemFactory::getInstance();
-        $configManager = Loader::getInstance()->getConfigManager();
 
         $items = [
             "farm_leggings",
@@ -181,7 +198,7 @@ final class OlympiaItems
             "generator_craftingtable",
             "generator_fencegate",
 
-            "ender_pearl_kitmap",
+            "olympia_ender_pearl", // ender_pearl_kitmap
             "eggtrap",
             "switchball",
             "force",
@@ -195,15 +212,22 @@ final class OlympiaItems
             "nemo",
             "instant_tp",
             "flying_soup",
+            "faction_tower",
 
             "ender_pearl_ffa",
+
+            "ender_butt_item",
+            "game_item",
+            "jump_item",
+            "navigation_item",
+            "last_checkpoint",
+            "stop_jump",
+
+            "sword_and_block",
         ];
 
         foreach ($items as $item) {
-            self::register($item, $configManager->getNested("items.$item")
-                ? $factory->get("minecraft:$item")
-                : VanillaBlocks::BEDROCK()->asItem()
-            );
+            self::register($item, $factory->get("minecraft:$item"));
         }
     }
 }

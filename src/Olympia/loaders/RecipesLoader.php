@@ -62,7 +62,28 @@ final class RecipesLoader
         $crafts[] = new ShapedRecipe(["NNN", "NNN", "NNN"], ["N" => $orichalqueNugget], [OlympiaItems::ORICHALQUE_INGOT()]);
         $crafts[] = new ShapedRecipe(["OOO", "OOO", "OOO"], ["O" => $orichalqueIngot], [OlympiaBlocks::ORICHALQUE_BLOCK()->asItem()]);
 
+        $shapesList = [];
+        $ingredientsList = [];
+        foreach ($crafts as $index => $craft) {
+            $shapesList[$index] = $craft->getShape();
+            $ingredientsList[$index] = $craft->getIngredientList();
+        }
+
         $manager = Server::getInstance()->getCraftingManager();
+
+        foreach ($manager->getShapedRecipes() as $shapedRecipes) {
+            foreach ($shapedRecipes as $recipe) {
+                $shape = $recipe->getShape();
+                if (in_array($shape, $shapesList)) {
+                    $index = array_search($shape, $shapesList);
+                    $ingredient = $recipe->getIngredientList();
+                    if ($ingredient === $ingredientsList[$index]) {
+                        unset($crafts[$index]);
+                    }
+                }
+            }
+        }
+
         foreach ($crafts as $craft) {
             $manager->registerShapedRecipe($craft);
         }

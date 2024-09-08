@@ -3,7 +3,6 @@
 namespace Olympia\loaders;
 
 use customiesdevs\customies\item\CustomiesItemFactory;
-use Olympia\ConfigManager;
 use Olympia\items\armors\cronos\CronosBoots;
 use Olympia\items\armors\cronos\CronosChestplate;
 use Olympia\items\armors\cronos\CronosHelmet;
@@ -25,12 +24,14 @@ use Olympia\items\armors\theia\TheiaLeggings;
 use Olympia\items\generators\types\GeneratorCobblestone;
 use Olympia\items\generators\types\GeneratorCraftingTable;
 use Olympia\items\generators\types\GeneratorFenceGate;
+use Olympia\items\hikabrain\SwordAndBlock;
 use Olympia\items\minerals\MithrilIngot;
 use Olympia\items\minerals\OrichalqueIngot;
 use Olympia\items\minerals\OrichalqueNugget;
 use Olympia\items\partners\AntiBuildStick;
 use Olympia\items\partners\AntiPearlStick;
 use Olympia\items\partners\EggTrap;
+use Olympia\items\partners\FactionTower;
 use Olympia\items\partners\FlyingSoup;
 use Olympia\items\partners\Force;
 use Olympia\items\partners\InfernalStick;
@@ -49,11 +50,23 @@ use Olympia\items\tools\sickles\types\OrichalqueSickle;
 use Olympia\items\tools\swords\types\InfinitySword;
 use Olympia\items\tools\swords\types\MithrilSword;
 use Olympia\items\tools\swords\types\OrichalqueSword;
-use Olympia\Loader;
+use Olympia\items\lobby\EnderButtItem;
+use Olympia\items\lobby\GameItem;
+use Olympia\items\lobby\JumpItem;
+use Olympia\items\lobby\LastCheckPoint;
+use Olympia\items\lobby\NavigationItem;
+use Olympia\items\lobby\StopJump;
+use Olympia\utils\ItemUtils;
+use pocketmine\data\bedrock\item\ItemTypeNames;
+use pocketmine\item\Item;
 use pocketmine\item\StringToItemParser;
+use ReflectionException;
 
 final class ItemsLoader
 {
+    /**
+     * @throws ReflectionException
+     */
     public static function loadAllItems(): void
     {
         self::registerItem(FarmLeggings::class, "minecraft:farm_leggings", "Farm Leggings");
@@ -93,7 +106,7 @@ final class ItemsLoader
         self::registerItem(GeneratorCraftingTable::class, "minecraft:generator_craftingtable", "Generator Crafting Table");
         self::registerItem(GeneratorFenceGate::class, "minecraft:generator_fencegate", "Generator Fence Gate");
 
-        self::registerItem(EnderPearlKitMap::class, "minecraft:ender_pearl_kitmap", "Ender Pearl KitMap");
+        self::registerItem(EnderPearlKitMap::class, "minecraft:olympia_ender_pearl", "Ender Pearl KitMap"); // minecraft:ender_pearl_kitmap
         self::registerItem(EggTrap::class, "minecraft:eggtrap", "Egg Trap");
         self::registerItem(Switchball::class, "minecraft:switchball", "Switchball");
         self::registerItem(Force::class, "minecraft:force", "Force");
@@ -107,8 +120,18 @@ final class ItemsLoader
         self::registerItem(Nemo::class, "minecraft:nemo", "Nemo");
         self::registerItem(InstantTp::class, "minecraft:instant_tp", "Instant Tp");
         self::registerItem(FlyingSoup::class, "minecraft:flying_soup", "Flying Soup");
+        self::registerItem(FactionTower::class, "minecraft:faction_tower", "Faction Tower");
 
         self::registerItem(EnderPearlFFA::class, "minecraft:ender_pearl_ffa", "Ender Pearl FFA");
+
+        self::cloneItem(new JumpItem(), ItemTypeNames::FEATHER, "minecraft:jump_item");
+        self::cloneItem(new NavigationItem(), ItemTypeNames::COMPASS, "minecraft:navigation_item");
+        self::cloneItem(new EnderButtItem(), ItemTypeNames::ENDER_PEARL, "minecraft:ender_butt_item");
+        self::cloneItem(new GameItem(), ItemTypeNames::BOOK, "minecraft:game_item");
+        self::cloneItem(new LastCheckPoint(), ItemTypeNames::PAPER, "minecraft:last_checkpoint");
+        self::cloneItem(new StopJump(), ItemTypeNames::REDSTONE, "minecraft:stop_jump");
+
+        self::registerItem(SwordAndBlock::class, "minecraft:sword_and_block", "Iron Sword");
     }
 
     public static function registerItem(string $className, string $identifier, string $name, bool $customId = true): void
@@ -117,6 +140,16 @@ final class ItemsLoader
             $identifierItemName = explode(":", $identifier, 2)[1];
             $id = $customId ? constant("Olympia\items\OlympiaItemTypeIds::" . strtoupper($identifierItemName)) : null;
             CustomiesItemFactory::getInstance()->registerItem($className, $identifier, $name, $id);
+        }
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public static function cloneItem(Item $item, string $itemStringId, string $identifier): void
+    {
+        if (is_null(StringToItemParser::getInstance()->parse($identifier))) {
+            ItemUtils::clone($item, $itemStringId, $identifier);
         }
     }
 }
