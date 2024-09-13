@@ -58,15 +58,16 @@ final class OlympiaItemTypeIds
     public const INSTANT_TP = 30042;
     public const FLYING_SOUP = 30043;
     public const FACTION_TOWER = 30044;
+    public const GRAPPLING_HOOK = 30045;
 
-    public const ENDER_PEARL_FFA = 30045;
+    public const ENDER_PEARL_FFA = 30046;
 
-    public const ENDER_BUTT_ITEM = 30046;
-    public const GAME_ITEM = 30047;
-    public const JUMP_ITEM = 30048;
-    public const NAVIGATION_ITEM = 30049;
-    public const LAST_CHECKPOINT = 30050;
-    public const STOP_JUMP = 30051;
+    public const ENDER_BUTT_ITEM = 30047;
+    public const GAME_ITEM = 30048;
+    public const JUMP_ITEM = 30049;
+    public const NAVIGATION_ITEM = 30050;
+    public const LAST_CHECKPOINT = 30051;
+    public const STOP_JUMP = 30052;
 
-    public const SWORD_AND_BLOCK = 30052;
+    public const SWORD_AND_BLOCK = 30053;
 }

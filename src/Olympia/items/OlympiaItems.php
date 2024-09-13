@@ -40,6 +40,7 @@ use Olympia\items\partners\EggTrap;
 use Olympia\items\partners\FactionTower;
 use Olympia\items\partners\FlyingSoup;
 use Olympia\items\partners\Force;
+use Olympia\items\partners\GrapplingHook;
 use Olympia\items\partners\InfernalStick;
 use Olympia\items\partners\InstantTp;
 use Olympia\items\partners\Levitation;
@@ -120,6 +121,7 @@ use pocketmine\utils\CloningRegistryTrait;
  * @method static InstantTp INSTANT_TP()
  * @method static FlyingSoup FLYING_SOUP()
  * @method static FactionTower FACTION_TOWER()
+ * @method static GrapplingHook GRAPPLING_HOOK()
  *
  * KitFFA :
  * @method static EnderPearlFFA ENDER_PEARL_FFA()
@@ -213,6 +215,7 @@ final class OlympiaItems
             "instant_tp",
             "flying_soup",
             "faction_tower",
+            "grappling_hook",
 
             "ender_pearl_ffa",
 
